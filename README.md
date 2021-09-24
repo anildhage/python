@@ -1,4 +1,4 @@
 # python
-My private personal learning and development 
+My private personal learning to code
 
 

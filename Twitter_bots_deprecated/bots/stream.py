@@ -2,6 +2,7 @@ import tweepy
 import logging
 from config import create_api
 import json
+import pdb
 
 
 logging.basicConfig(level=logging.INFO)
@@ -16,8 +17,7 @@ class devTweetListener(tweepy.StreamListener):
     # Creates file to write to, and appends tweets to it
     def on_status(self, tweet):
         logger.info(f"Processing tweet id {tweet.id}")
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
+        if tweet.in_reply_to_status_id is not None or tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
         if not tweet.favorited:
@@ -32,6 +32,7 @@ class devTweetListener(tweepy.StreamListener):
                 tweet.retweet()
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
+        
 
     def on_error(self, status):
         logger.error(status)
@@ -47,7 +48,8 @@ def main(keywords):
     
 # Insert terms to be tracked in main([]), arguments are string values held in a list
 if __name__ == "__main__":
-    main(['485visas', 'extend485', '485visaextension', '485', '485visa',])
+    main(['485visas', '485Visas','extend485', 'Extend485', '485visaextension', '485VisaExtension','strandedstudents', '485visa', '485Visa','letusbacktoaus', 
+        'PeaceShouts', 'InternationalStudentsAustralia', 'LetUsBackToAus', 'peaceshouts', 'aus_int_student', 'NickMcKim', 'AlexHawkeMP', 'tomwconnell', 'extend485visas'])
 
 
 
